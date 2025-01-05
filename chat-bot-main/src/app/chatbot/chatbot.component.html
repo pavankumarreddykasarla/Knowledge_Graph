@@ -1,0 +1,28 @@
+<div class="chat-container">
+    <div class="chat-header">
+      <h3>Assistant Bot</h3>
+    </div>
+  <div class="chat-messages" #messagesContainer>
+    <div
+      *ngFor="let msg of messages; let i = index"
+      [ngClass]="{ 'bot-message': msg.sender === 'bot', 'user-message': msg.sender === 'user' }"
+    >
+      <span *ngIf="msg.text">{{ msg.text }}</span>
+
+      <span *ngIf="msg.conversationalResponse">{{ msg.conversationalResponse }}</span>
+      <span *ngIf="msg.queryResult">{{ msg.queryResult }}</span>
+
+      <!-- <button *ngIf="msg.sender === 'bot' && msg.conversationalResponse && i !== 0" class="visualize-button" (click)="openPopup(msg.conversationalResponse,msg.cypherQuery ?? 'No query available',msg.queryResult )">
+      </button> -->
+      <button *ngIf="msg.sender === 'bot' && msg.conversationalResponse && i !== 0"
+        class="visualize-button"
+        (click)="openPopup(msg)">
+</button>
+    </div>
+  </div>
+
+  <div class="chat-input">
+    <input [(ngModel)]="userInput" (keydown.enter)="sendMessage()" placeholder="Type a message" />
+    <button (click)="sendMessage()">Send</button>
+  </div>
+</div>

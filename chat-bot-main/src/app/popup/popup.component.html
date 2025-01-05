@@ -1,0 +1,24 @@
+
+<div class="popup-container">
+  <div class="popup-container">
+    <h3>Visualized Content</h3>
+
+    <p *ngIf="data.conversationalResponse">Conversational Response: {{ data.conversationalResponse }}</p>
+
+    <p *ngIf="data.cypherQuery">Cypher Query: {{ data.cypherQuery }}</p>
+
+    <p *ngIf="data.queryResult && data.queryResult.length > 0">
+      Query Result: {{ data.queryResult | json }}
+    </p>
+
+    <p>Additional HTML Content:</p>
+    <div class="custom-html">
+      <p>This is additional HTML content for visualization and you can add.</p>
+    </div>
+  </div>
+  <div class="popup-header">
+    <h2>Network Graph</h2>
+    <button class="close-button" (click)="close()">X</button>
+  </div>
+  <div #container class="graph-container"></div>
+</div>
